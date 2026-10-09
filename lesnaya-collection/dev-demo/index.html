@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Планировки · Лесная Коллекция · демо для разработки</title>
+  <link rel="stylesheet" href="style.css?v=20261010-offers12-300">
+</head>
+<body>
+  <main class="device" aria-label="Экран планировок ЖК «Лесная Коллекция»">
+    <div class="scroll-area" id="scrollArea">
+      <header class="nav" id="nav">
+        <div class="status" aria-hidden="true">
+          <img class="time" src="assets/time.svg" alt="">
+          <img class="logo" src="assets/cian-logo.svg" alt="">
+          <img class="signals" src="assets/status-dark.svg" alt="">
+        </div>
+        <div class="nav-row">
+          <img class="back-icon" src="assets/arrow-left.svg" alt="">
+          <h1>Планировки</h1>
+        </div>
+      </header>
+
+      <section class="plan-body" aria-label="Планировки и квартиры">
+        <div class="carousel" id="carousel" aria-label="Планировки, листайте горизонтально"></div>
+        <div class="dots" id="dots" aria-label="Перейти к планировке"></div>
+        <div class="summary" id="summary" aria-live="polite"></div>
+        <div class="offers" id="offers"></div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="call-cta">Позвонить застройщику</div>
+      <span class="home-indicator" aria-hidden="true"></span>
+    </footer>
+  </main>
+  <script src="data.js"></script>
+  <script src="app.js?v=20261010-more-static"></script>
+</body>
+</html>
