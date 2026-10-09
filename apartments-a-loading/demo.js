@@ -133,8 +133,8 @@
       window.CianKitDemo?.renderResults();
     }, fadeDelay + 550);
   }
-  function setMode(next) {
-    if (next === mode) return;
+  function setMode(next, force = false) {
+    if (next === mode && !force) return;
     mode = next;
     tabs.forEach(tab => {
       const active = tab.dataset.mode === mode;
@@ -156,5 +156,8 @@
       next.focus();
     });
   });
-  showLoading();
+  setMode('flats', true);
+  window.addEventListener('pageshow', event => {
+    if (event.persisted) setMode('flats', true);
+  });
 })();
