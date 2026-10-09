@@ -48,8 +48,6 @@ button:focus-visible{outline:2px solid var(--stroke-border-main);outline-offset:
 .photo{position:relative;width:133px;height:100px;flex:none;overflow:hidden;border-radius:12px}
 .photo img{display:block;width:100%;height:100%;object-fit:cover}
 .photo::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.04);pointer-events:none}
-.expand{position:absolute;left:8px;bottom:8px;width:36px;height:36px;border-radius:8px;z-index:1;display:none;align-items:center;justify-content:center;background:var(--background-primary);color:var(--icon-main-default);pointer-events:none}
-.row:hover .expand{display:flex}
 .title{flex:1;min-width:0}
 .title strong,.price strong{font-size:18px;line-height:24px;letter-spacing:-.5px;white-space:nowrap}
 .badges{display:flex;padding-top:8px;align-items:center;isolation:isolate}

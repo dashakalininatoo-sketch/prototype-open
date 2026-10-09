@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Загрузка расквартирника — демка</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 <style>
 body{padding:40px 28px;background:var(--surface-neutral-default)}
 .page{max-width:1200px;margin:auto}
@@ -34,8 +34,8 @@ iframe{position:absolute;top:0;left:0;display:block;width:1440px;height:980px;bo
 <main class="page">
   <header class="top"><div><h1>Загрузка расквартирника</h1><p class="muted">Desktop · квартиры и планировки</p></div><span class="tag">Только сценарий загрузки</span></header>
   <section class="card" aria-labelledby="demo-title">
-    <div class="toolbar"><h2 id="demo-title">Живая демка</h2><div class="toolbar-actions"><a class="button replay open-prototype" href="index.html" target="_blank" rel="noopener">Открыть полный прототип</a><button class="button replay" id="replay" type="button">Повторить загрузку</button></div></div>
-    <div class="demo-window"><div class="demo-stage" id="demo-stage"><iframe id="demo" src="index.html" title="Загрузка квартир и планировок"></iframe></div></div>
+    <div class="toolbar"><h2 id="demo-title">Живая демка</h2><div class="toolbar-actions"><a class="button replay open-prototype" href="index.html?v=2" target="_blank" rel="noopener">Открыть полный прототип</a><button class="button replay" id="replay" type="button">Повторить загрузку</button></div></div>
+    <div class="demo-window"><div class="demo-stage" id="demo-stage"><iframe id="demo" src="index.html?v=2" title="Загрузка квартир и планировок"></iframe></div></div>
   </section>
   <section class="card" aria-label="Параметры анимации">
     <dl class="spec">
@@ -82,7 +82,7 @@ fitDemo();
 if('ResizeObserver' in window)new ResizeObserver(fitDemo).observe(demoWindow);
 else window.addEventListener('resize',fitDemo);
 document.querySelector('#replay').addEventListener('click',()=>{
-  document.querySelector('#demo').src='index.html?replay='+Date.now();
+  document.querySelector('#demo').src='index.html?v=2&replay='+Date.now();
 });
 </script>
 </body>

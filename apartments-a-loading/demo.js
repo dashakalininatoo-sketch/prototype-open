@@ -49,7 +49,7 @@
     const title = '1-комнатная · ' + area(item.area);
     const price = (plan ? 'от ' : '') + money(item.price);
     const oldPrice = !plan && item.oldPrice ? '<span class="old-price"><s>' + money(item.oldPrice) + '</s></span>' : '';
-    return '<article class="row"><div class="photo"><img src="assets/' + item.image + '" alt=""><span class="expand" aria-hidden="true"><svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H11.5858L3 11.5858V8H1V15H8V13H4.41421L13 4.41421V8H15V1H8V3Z" fill="currentColor"/></svg></span></div>' +
+    return '<article class="row"><div class="photo"><img src="assets/' + item.image + '" alt=""></div>' +
       '<div class="title"><strong>' + title + '</strong>' + badges + '</div>' +
       (plan ? '' : '<span class="cell building-cell">Корпус 5</span><span class="cell date-cell">2 кв. 2029</span><span class="cell floor-cell">' + item.floor + ' из 28</span>') +
       '<div class="price"><strong>' + price + '</strong>' + oldPrice + '</div>' +
