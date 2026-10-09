@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Загрузка расквартирника — демка</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+body{padding:40px 28px;background:var(--surface-neutral-default)}
+.page{max-width:1200px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:28px}
+h1{font-size:32px;line-height:38px;margin:0 0 8px}
+h2{font-size:20px;line-height:26px;margin:0}
+p{margin:0}
+.muted{color:var(--text-secondary-default)}
+.tag{padding:6px 10px;background:var(--control-main-secondary-default);color:var(--text-main-default);border-radius:8px;font-size:14px;white-space:nowrap}
+.card{background:var(--background-primary);border:1px solid var(--stroke-border-neutral);border-radius:20px;padding:24px;margin-bottom:16px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+.toolbar-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.replay{border:0;background:var(--control-main-secondary-default);color:var(--text-main-default);font-weight:700;min-height:44px}
+.open-prototype{display:inline-flex;align-items:center;justify-content:center;padding:0 16px;border-radius:8px;text-decoration:none;white-space:nowrap}
+.replay:hover{background:#d9e8ff}
+.demo-window{width:100%;overflow:hidden;border:1px solid var(--stroke-divider-default);border-radius:12px;background:var(--background-primary)}
+.demo-stage{position:relative;margin-inline:auto;width:100%;height:980px}
+iframe{position:absolute;top:0;left:0;display:block;width:1440px;height:980px;border:0;transform-origin:top left;transform:scale(var(--preview-scale,1))}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin:0}
+.spec div{display:flex;gap:12px}
+.spec dt{min-width:130px;color:var(--text-secondary-default)}
+.spec dd{margin:0}
+@media(max-width:800px){body{padding:20px 12px}.top{display:block}.tag{display:inline-block;margin-top:8px}.spec{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="top"><div><h1>Загрузка расквартирника</h1><p class="muted">Desktop · квартиры и планировки</p></div><span class="tag">Только сценарий загрузки</span></header>
+  <section class="card" aria-labelledby="demo-title">
+    <div class="toolbar"><h2 id="demo-title">Живая демка</h2><div class="toolbar-actions"><a class="button replay open-prototype" href="index.html" target="_blank" rel="noopener">Открыть полный прототип</a><button class="button replay" id="replay" type="button">Повторить загрузку</button></div></div>
+    <div class="demo-window"><div class="demo-stage" id="demo-stage"><iframe id="demo" src="index.html" title="Загрузка квартир и планировок"></iframe></div></div>
+  </section>
+  <section class="card" aria-label="Параметры анимации">
+    <dl class="spec">
+      <div><dt>Скелетон</dt><dd>3 строки на 3500 мс · блик 1350 мс · спиннер 2000 мс</dd></div>
+      <div><dt>Результат</dt><dd>5 строк · шаг 100 мс · проявление 250 мс</dd></div>
+      <div><dt>Рост блока</dt><dd>650 мс · cubic-bezier(.4, 0, .2, 1)</dd></div>
+      <div><dt>Кнопка</dt><dd>Сначала спиннер гаснет на светлом фоне, затем кнопка синеет без спиннера, после появляется текст</dd></div>
+      <div><dt>Пагинация</dt><dd>Появляется только с результатами; Button XS из gang kit, переходы отключены</dd></div>
+      <div><dt>Итоговая кнопка</dt><dd>Button M из gang kit: при загрузке — Secondary/Disabled, после неё — Primary/Default</dd></div>
+    </dl>
+  </section>
+  <section class="card" aria-labelledby="sequence-title">
+    <h2 id="sequence-title" style="margin-bottom:16px">Последовательность после запуска</h2>
+    <dl class="spec">
+      <div><dt>0–3500 мс</dt><dd>Три скелетона и светлая кнопка со спиннером; пагинации нет</dd></div>
+      <div><dt>3500 мс</dt><dd>Появляются пять строк и пагинация; блок раскрывается за 650 мс</dd></div>
+      <div><dt>4200 мс</dt><dd>Спиннер затухает на светлой кнопке за 180 мс</dd></div>
+      <div><dt>4400 мс</dt><dd>Спиннер уже скрыт; фон кнопки переходит в Primary за 350 мс</dd></div>
+      <div><dt>4750 мс</dt><dd>На синей кнопке текст проявляется за 220 мс</dd></div>
+      <div><dt>Повтор</dt><dd>Переключение «Квартиры / Планировки» заново запускает сценарий; остальные переходы в демке отключены</dd></div>
+    </dl>
+  </section>
+  <section class="card" aria-labelledby="colors-title">
+    <h2 id="colors-title" style="margin-bottom:16px">Цвета скелетона · токены дизайн-системы</h2>
+    <dl class="spec">
+      <div><dt>Заливка</dt><dd>Surface/Neutral/Default — изображение, текстовые полосы, цена и места кнопок</dd></div>
+      <div><dt>Обводка</dt><dd>Stroke/Border/Neutral — контур изображения</dd></div>
+      <div><dt>Блик</dt><dd>Прозрачный → Surface/Inverted/Default → прозрачный; центральный цвет без снижения прозрачности</dd></div>
+      <div><dt>Кнопка загрузки</dt><dd>Control/Main/Secondary/Disabled — фон; Text/Main/Disabled — спиннер</dd></div>
+      <div><dt>Счётчики вкладок</dt><dd>Body1 — 16/24, Regular; выровнены по центру заголовков</dd></div>
+    </dl>
+  </section>
+</main>
+<script>
+const demoWindow=document.querySelector('.demo-window');
+const demoStage=document.querySelector('#demo-stage');
+function fitDemo(){
+  const scale=Math.min(1,demoWindow.clientWidth/1440);
+  demoStage.style.setProperty('--preview-scale',scale);
+  demoStage.style.width=1440*scale+'px';
+  demoStage.style.height=980*scale+'px';
+}
+fitDemo();
+if('ResizeObserver' in window)new ResizeObserver(fitDemo).observe(demoWindow);
+else window.addEventListener('resize',fitDemo);
+document.querySelector('#replay').addEventListener('click',()=>{
+  document.querySelector('#demo').src='index.html?replay='+Date.now();
+});
+</script>
+</body>
+</html>

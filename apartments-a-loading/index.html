@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Загрузка расквартирника — квартиры и планировки</title>
+<link rel="stylesheet" href="assets/kit/semanticPalette.css">
+<link rel="stylesheet" href="assets/kit/ds.css">
+<link rel="stylesheet" href="assets/badges.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="catalog" aria-label="Демка загрузки квартир и планировок">
+  <nav class="tabs" role="tablist" aria-label="Вид предложений">
+    <button id="flats-tab" class="tab active" type="button" role="tab" data-mode="flats" aria-selected="true" tabindex="0" aria-controls="results">Квартиры <span>231</span></button>
+    <button id="plans-tab" class="tab" type="button" role="tab" data-mode="plans" aria-selected="false" tabindex="-1" aria-controls="results">Планировки <span>32</span></button>
+  </nav>
+  <div id="kit-filters" class="filters" aria-hidden="true"></div>
+  <section id="results" role="tabpanel" aria-labelledby="flats-tab" aria-busy="true"></section>
+  <div class="links" aria-label="Дополнительная информация о квартирах">
+    <div class="agents">Ещё <span class="inert-link">18 квартир</span> продают <span class="inert-link">агенты и собственники</span><span class="info-icon" aria-hidden="true">i</span></div>
+    <div>Все планировки <span class="inert-link link-count">32 <span aria-hidden="true">›</span></span></div>
+    <div>Все квартиры <span class="inert-link link-count">231 <span aria-hidden="true">›</span></span></div>
+  </div>
+  <div class="banners" aria-label="Информация о ЖК">
+    <div class="banner positive"><div class="dom-logo"><img src="assets/351-62633-imgLogoDomRf1.svg" alt=""></div><div>ЖК проверен наш.дом.рф<br><span class="inert-link">Узнать больше</span></div></div>
+    <div class="banner neutral"><img class="escrow-logo" src="assets/351-62633-img40X40Escrou.svg" alt=""><div>Есть корпуса со сделкой с эскроу–счётом<br><span class="inert-link">Узнать больше</span></div></div>
+  </div>
+</main>
+<script src="assets/kit/react.production.min.js"></script>
+<script src="assets/kit/react-dom.production.min.js"></script>
+<script src="assets/kit/bundle.js"></script>
+<script src="filters-kit.js"></script>
+<script src="demo.js"></script>
+</body>
+</html>
