@@ -13,7 +13,7 @@
   const room=n=>n===0?'Студия':`${n}-комн.`;
   const count=n=>`${n} ${n%100>=11&&n%100<=14?'квартир':n%10===1?'квартира':n%10>=2&&n%10<=4?'квартиры':'квартир'}`;
   const area=n=>Number(n).toLocaleString('ru-RU',{maximumFractionDigits:1});
-  let activeIndex=0,scrollFrame=0,settleTimer=0;
+  let activeIndex=0,scrollFrame=0,settleTimer=0,pointerDown=false;
 
   carousel.innerHTML=groups.map((group,index)=>`<div class="plan-card${index===0?' is-active':''}" data-index="${index}"><img src="${group.image}" alt="Планировка ${room(group.rooms)}, ${area(group.flats[0].areaM2)} м²"><span class="tour-badge" aria-hidden="true"><img src="assets/tour.svg" alt=""></span></div>`).join('');
   const cards=[...carousel.querySelectorAll('.plan-card')];
@@ -46,7 +46,13 @@
     });
   }
   function settle(){
+    if(pointerDown)return;
     const index=Math.max(0,Math.min(groups.length-1,Math.round(carousel.scrollLeft/343)));
+    const target=index*343;
+    if(Math.abs(carousel.scrollLeft-target)>1){
+      carousel.scrollTo({left:target,behavior:'smooth'});
+      return;
+    }
     if(index===activeIndex)return;
     const direction=index-activeIndex;
     activeIndex=index;
@@ -54,9 +60,13 @@
     renderDetails(direction);
   }
   scrollArea.addEventListener('scroll',()=>nav.classList.toggle('is-scrolled',scrollArea.scrollTop>1),{passive:true});
+  carousel.addEventListener('pointerdown',()=>{pointerDown=true;clearTimeout(settleTimer);},{passive:true});
+  const finishGesture=()=>{pointerDown=false;clearTimeout(settleTimer);settleTimer=setTimeout(settle,140);};
+  window.addEventListener('pointerup',finishGesture,{passive:true});
+  window.addEventListener('pointercancel',finishGesture,{passive:true});
   carousel.addEventListener('scroll',()=>{
     if(!scrollFrame)scrollFrame=requestAnimationFrame(updateScale);
-    clearTimeout(settleTimer);settleTimer=setTimeout(settle,100);
+    clearTimeout(settleTimer);settleTimer=setTimeout(settle,140);
   },{passive:true});
   carousel.addEventListener('scrollend',settle,{passive:true});
   dots.addEventListener('click',event=>{
