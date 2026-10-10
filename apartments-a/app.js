@@ -208,3 +208,15 @@ document.addEventListener('keydown',e=>{
 });
 document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});d.addEventListener('close',()=>{if(returnFocus?.isConnected)returnFocus.focus();if(d.id==='plan-modal'){const planId=String(d.dataset.plan||'');const card=[...document.querySelectorAll('.row[data-plan]')].find(item=>item.dataset.row===planId);const photo=card?.querySelector('.photo');if(card&&state.viewed.has(planId)){card.dataset.viewed='true';if(photo&&!photo.querySelector('.viewed-badge'))photo.insertAdjacentHTML('beforeend',viewedBadgeHTML());}if(suppressedPlanCard?.isConnected){const r=suppressedPlanCard.getBoundingClientRect();suppressedPlanCard.dataset.hoverRearm=lastPointer.x>=r.left&&lastPointer.x<=r.right&&lastPointer.y>=r.top&&lastPointer.y<=r.bottom?'exit':'enter';}}});});
 render();
+
+const requestedPlan = new URLSearchParams(location.search).get('plan');
+if (requestedPlan) {
+ state.mode = 'plans';
+ state.rooms.clear();
+ state.priceFrom = state.priceTo = state.areaFrom = state.areaTo = '';
+ state.delivery.clear();
+ state.building = 'all';
+ state.page = 1;
+ render();
+ openPlan(requestedPlan);
+}
