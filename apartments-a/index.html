@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Квартиры и планировки</title><link rel="stylesheet" href="vendor/badges.css"><link rel="stylesheet" href="vendor/app-badge.css"><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="vendor/chips.css"><link rel="stylesheet" href="styles.css"></head>
+<body>
+<main class="catalog" aria-label="Квартиры и планировки">
+  <nav class="tabs" role="tablist" aria-label="Вид предложений">
+    <button id="flats-tab" class="tab" role="tab" data-mode="flats" aria-controls="results">Квартиры <span>—</span></button>
+    <button id="plans-tab" class="tab" role="tab" data-mode="plans" aria-controls="results">Планировки <span>—</span></button>
+  </nav>
+  <div class="filters" aria-label="Фильтры">
+   <div class="filter-controls">
+    <div id="rooms" class="rooms"></div>
+    <div class="filter-wrap"><button id="price-filter" class="chip chip-m active" aria-expanded="false"><span>До 15 млн ₽</span><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12.707 6.35367L11.2928 4.93945L7.99992 8.23235L4.70703 4.93945L3.29282 6.35367L7.99992 11.0608L12.707 6.35367Z" fill="currentColor"/>
+</svg></button><div id="price-popover" class="popover ranges" hidden></div></div>
+    <div class="filter-wrap"><button id="area-filter" class="chip chip-m active" aria-expanded="false"><span>От 34 м²</span><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12.707 6.35367L11.2928 4.93945L7.99992 8.23235L4.70703 4.93945L3.29282 6.35367L7.99992 11.0608L12.707 6.35367Z" fill="currentColor"/>
+</svg></button><div id="area-popover" class="popover ranges" hidden></div></div>
+    <div class="filter-wrap"><button id="delivery-filter" class="chip chip-m" aria-expanded="false"><span>Срок сдачи</span><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12.707 6.35367L11.2928 4.93945L7.99992 8.23235L4.70703 4.93945L3.29282 6.35367L7.99992 11.0608L12.707 6.35367Z" fill="currentColor"/>
+</svg></button><div id="delivery-popover" class="popover deliveries" hidden></div></div>
+    <div class="filter-wrap"><button id="building-filter" class="chip chip-m" aria-expanded="false"><span>Корпус</span><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12.707 6.35367L11.2928 4.93945L7.99992 8.23235L4.70703 4.93945L3.29282 6.35367L7.99992 11.0608L12.707 6.35367Z" fill="currentColor"/>
+</svg></button><div id="building-popover" class="popover buildings" hidden></div></div>
+   </div>
+   <div id="filter-tags" class="filter-tags" hidden></div>
+  </div>
+  <section id="results" role="tabpanel"></section>
+  <div class="links">
+    <div class="agents">Ещё <button class="link" data-agent-modal>18 квартир</button> продают <button class="link" data-agent-modal>агенты и собственники</button><button class="info-button" aria-label="Информация о предложениях" title="Предложения от агентов и собственников" data-agent-modal><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 5C8.69036 5 9.25 4.44036 9.25 3.75C9.25 3.05964 8.69036 2.5 8 2.5C7.30964 2.5 6.75 3.05964 6.75 3.75C6.75 4.44036 7.30964 5 8 5Z" fill="currentColor"/>
+<path d="M7 6.5L7 13.5H9L9 6.5H7Z" fill="currentColor"/>
+</svg></button></div>
+    <div>Все планировки <span class="static-count" data-static-count="plans">—</span><svg class="icon static-chevron" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.35367 12.707L4.93945 11.2928L8.23235 7.99992L4.93945 4.70703L6.35367 3.29282L11.0608 7.99992L6.35367 12.707Z" fill="currentColor"/>
+</svg></div>
+    <div>Все квартиры <span class="static-count" data-static-count="flats">—</span><svg class="icon static-chevron" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6.35367 12.707L4.93945 11.2928L8.23235 7.99992L4.93945 4.70703L6.35367 3.29282L11.0608 7.99992L6.35367 12.707Z" fill="currentColor"/>
+</svg></div>
+  </div>
+  <div class="banners">
+    <div class="banner positive"><div class="dom-logo"><img id="dom-logo" alt=""></div><div>ЖК проверен наш.дом.рф</div></div>
+    <div class="banner neutral"><img id="escrow-logo" alt=""><div>Есть корпуса со сделкой с эскроу–счётом<br><a href="#escrow" data-boundary="Информация об эскроу-счёте">Узнать больше</a></div></div>
+  </div>
+</main>
+<dialog id="plan-modal" aria-labelledby="modal-title">
+  <button class="modal-close" aria-label="Закрыть"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.207 3.20703L9.41406 8L14.207 12.793L12.793 14.207L8 9.41406L3.20703 14.207L1.79297 12.793L6.58594 8L1.79297 3.20703L3.20703 1.79297L8 6.58594L12.793 1.79297L14.207 3.20703Z" fill="currentColor"/>
+</svg></button>
+  <div class="modal-top">
+    <div class="modal-summary"><div id="modal-photo" class="photo"><button id="expand-modal" class="expand visible" aria-label="Увеличить планировку"></button></div><div class="summary-info"><div><h2 id="modal-title" class="heading3">2-комнатные квартиры</h2><p class="heading2">Нет данных</p><p class="secondary-text">Нет данных</p></div><div class="areas"><div><strong class="heading3">Нет данных</strong><br>общая площадь</div><div><strong class="heading3">Нет данных</strong><br>жилая площадь</div></div></div></div>
+    <div class="table-head"><span>Площадь</span><span>Срок сдачи</span><span>Этаж</span><span>Стоимость</span><span></span></div>
+  </div>
+  <div id="modal-offers" class="modal-offers"></div>
+  <footer class="modal-footer"><div class="developer"><div class="developer-logo"><img id="developer-avatar" alt=""></div><div><span class="body2">Застройщик</span><br><strong class="heading3">Нет данных</strong></div></div><button class="button secondary large" data-boundary="Чат с застройщиком"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16 7.02005C16 10.8971 12.4183 14.0401 8 14.0401C7.19913 14.0401 6.42575 13.9368 5.6962 13.7446L3.28668e-05 16L1.39465 10.9816C0.514736 9.85409 0 8.48982 0 7.02005C0 3.14298 3.58172 0 8 0C12.4183 0 16 3.14298 16 7.02005ZM4.29289 6.31091C4.68342 5.91927 5.31658 5.91927 5.70711 6.31091C6.09763 6.70256 6.09763 7.33753 5.70711 7.72918C5.31658 8.12082 4.68342 8.12082 4.29289 7.72918C3.90237 7.33753 3.90237 6.70256 4.29289 6.31091ZM10.2929 7.72918C10.6834 8.12082 11.3166 8.12082 11.7071 7.72918C12.0976 7.33753 12.0976 6.70256 11.7071 6.31091C11.3166 5.91927 10.6834 5.91927 10.2929 6.31091C9.90237 6.70256 9.90237 7.33753 10.2929 7.72918ZM8.70711 7.72918C9.09763 7.33753 9.09763 6.70256 8.70711 6.31091C8.31658 5.91927 7.68342 5.91927 7.29289 6.31091C6.90237 6.70256 6.90237 7.33753 7.29289 7.72918C7.68342 8.12082 8.31658 8.12082 8.70711 7.72918Z" fill="currentColor"/>
+</svg>Написать</button><button class="button primary large" data-boundary="Контакты застройщика"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.02028 11.8655L4.13447 6.97972C4.83219 6.28201 5.5299 5.58429 6.22762 4.88657C6.6134 4.50079 6.61304 3.87523 6.22709 3.48963C5.06348 2.32709 3.90175 1.16322 2.73853 0L0.283622 2.4549C0.0990174 2.63951 -0.00656964 2.8899 0.000317234 3.15088C0.0929357 6.66068 1.4741 9.90432 3.78543 12.2146C6.10093 14.529 9.34962 15.907 12.8491 15.9997C13.1101 16.0066 13.3605 15.901 13.5451 15.7164L16 13.2615C14.8369 12.0984 13.6738 10.9352 12.5107 9.77212C12.125 9.38644 11.4996 9.38668 11.114 9.77241C10.4162 10.4703 9.71812 11.1677 9.02028 11.8655Z" fill="currentColor"/>
+</svg>Показать телефон</button></footer>
+</dialog>
+<dialog id="agents-modal" class="agents-modal" aria-labelledby="agents-modal-title">
+  <button class="modal-close" aria-label="Закрыть"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.207 3.20703L9.41406 8L14.207 12.793L12.793 14.207L8 9.41406L3.20703 14.207L1.79297 12.793L6.58594 8L1.79297 3.20703L3.20703 1.79297L8 6.58594L12.793 1.79297L14.207 3.20703Z" fill="currentColor"/></svg></button>
+  <div class="agents-modal-art" aria-hidden="true"><div class="art-card art-card-back"></div><div class="art-card art-card-front"></div><div class="art-building"><i></i><i></i><i></i><i></i></div></div>
+  <div class="agents-modal-copy"><h2 id="agents-modal-title" class="heading1">Покупка у застройщика и покупка у агента или собственника — в чём отличия</h2><p>Если продавец — застройщик, вы становитесь первым собственником квартиры. Такую покупку называют первичной и оформляют, как правило, по ДДУ — договору долевого участия.</p><p>Если квартиру в новом ЖК продают собственник, агент или агентство недвижимости, юридически покупка может отличаться: например, оформляется переуступка или договор купли-продажи.</p></div>
+  <div class="agents-modal-footer"><button class="button primary" data-close-dialog>Буду знать</button></div>
+</dialog>
+<dialog id="image-modal" aria-labelledby="image-modal-title"><button class="modal-close" aria-label="Закрыть"><svg class="icon" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.207 3.20703L9.41406 8L14.207 12.793L12.793 14.207L8 9.41406L3.20703 14.207L1.79297 12.793L6.58594 8L1.79297 3.20703L3.20703 1.79297L8 6.58594L12.793 1.79297L14.207 3.20703Z" fill="currentColor"/>
+</svg></button><div id="large-photo" class="photo"></div><footer class="image-modal-footer"><div class="image-modal-copy"><h2 id="image-modal-title" class="heading1"></h2><p id="image-modal-price" class="heading3"></p></div><button class="button primary large" data-boundary="Переход к объявлению">Перейти к объявлению</button></footer></dialog>
+<div id="notice" role="status" hidden></div>
+<script src="assets.js"></script><script src="icons.js"></script><script src="assets/data/lesnaya-kollekciya-flats.js"></script><script src="lesnaya-kollekciya-layout-groups.js"></script><script src="lesnaya-adapter.js"></script><script src="app.js"></script>
+</body></html>
