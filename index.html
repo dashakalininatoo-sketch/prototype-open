@@ -4,59 +4,100 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Содержание прототипов</title>
+  <title>Содержание проекта, прототипы и макеты</title>
   <style>
     *{box-sizing:border-box}
-    body{max-width:960px;margin:0 auto;padding:64px 24px 96px;font:16px/1.5 system-ui,sans-serif;color:#1d273b;background:#f7f9fc}
-    h1{font-size:36px;line-height:1.15;margin:0 0 12px}
-    h2{font-size:24px;line-height:1.25;margin:0 0 20px}
-    h3{font-size:18px;line-height:1.3;margin:0 0 8px}
-    p{margin:0;color:#57657d}
-    header{margin-bottom:48px}
-    nav{margin-bottom:40px}
-    nav strong{display:block;margin-bottom:12px}
-    section{scroll-margin-top:24px}
-    article{border:1px solid #dce2eb;border-radius:16px;padding:24px;background:#fff}
-    article p{color:#1d273b}
-    article p+p{margin-top:4px;color:#57657d}
-    .links{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-    a{color:#1268d6}
-    .links a{display:inline-block;border:1px solid #c9d8ef;border-radius:8px;padding:9px 14px;text-decoration:none}
-    .links a:hover{background:#eef5ff}
-    .figma-section{margin-top:32px}
-    .figma-links{display:flex;gap:12px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap}
-    .figma-links a{display:inline-block;border:1px solid #c9d8ef;border-radius:8px;padding:9px 14px;text-decoration:none}
-    .figma-links a:hover{background:#eef5ff}
-    @media(max-width:600px){body{padding:36px 16px 64px}h1{font-size:30px}}
+    :root{color-scheme:light;--ink:#18233f;--muted:#66728d;--blue:#1769f5;--line:#e3e8f3}
+    body{max-width:1040px;margin:0 auto;padding:56px 32px 88px;font:16px/1.5 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(ellipse at 88% 4%,#e7eaff 0,transparent 34%),#f6f7fc}
+    h1,h2,h3,p{margin:0}
+    header{margin-bottom:28px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;color:#586b9a;font-size:12px;font-weight:750;letter-spacing:.11em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:#ffbf54;box-shadow:0 0 0 4px #ffbf5430}
+    h1{max-width:800px;font-size:clamp(34px,5vw,48px);line-height:1.08;letter-spacing:-.045em}
+    .intro{margin-top:14px;color:var(--muted);font-size:17px}
+    .holiday-note{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;overflow:hidden;margin:32px 0 38px;padding:26px 30px;border:1px solid #d4dcff;border-radius:24px;background:linear-gradient(112deg,#e9edff 0%,#eff8ff 54%,#e8fbf4 100%);box-shadow:0 12px 36px #314b8710}
+    .holiday-note::after{content:"";position:absolute;right:130px;top:-74px;width:190px;height:190px;border:1px solid #ffffffa8;border-radius:50%;box-shadow:0 0 0 22px #ffffff45,0 0 0 48px #ffffff28;pointer-events:none}
+    .holiday-copy,.holiday-sticker{position:relative;z-index:1}
+    .holiday-kicker{display:block;margin-bottom:5px;color:#5d6e9a;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .holiday-note h2{font-size:23px;line-height:1.2;letter-spacing:-.025em}
+    .holiday-note p{max-width:650px;margin-top:8px;color:#596784}
+    .holiday-sticker{flex:none;display:grid;justify-items:center;gap:2px;min-width:112px;padding:13px 15px;border:1px solid #ffffffbd;border-radius:20px;background:#ffffffa8;transform:rotate(3deg)}
+    .holiday-sticker span{color:#627292;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .holiday-sticker strong{font-size:34px;line-height:1.1}
+    .cards{display:grid;gap:16px}
+    .prototype-card{position:relative;overflow:hidden;padding:24px 26px;border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:0 8px 28px #27385b09;transition:transform 160ms ease,box-shadow 160ms ease}
+    .prototype-card:hover{transform:translateY(-2px);box-shadow:0 14px 34px #27385b14}
+    .prototype-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#7a83ff,#57c8c0)}
+    .card-heading{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+    .card-icon{display:grid;place-items:center;flex:none;width:48px;height:48px;border-radius:15px;background:#eef1ff;font-size:24px}
+    .app-card .card-icon{background:#e9f7f4}
+    .card-kicker{display:block;margin-bottom:3px;color:#7b86a0;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    h3{font-size:21px;line-height:1.2;letter-spacing:-.025em}
+    .prototype-card p{color:#34415f}
+    .prototype-card p+p{margin-top:5px;color:var(--muted)}
+    .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    a{color:var(--blue)}
+    .links a,.figma-links a{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 14px;border:1px solid #d4def3;border-radius:12px;background:#fff;color:#145fda;font-weight:650;text-decoration:none;transition:background 140ms ease,border-color 140ms ease,transform 140ms ease}
+    .links a:hover,.figma-links a:hover{transform:translateY(-1px);border-color:#abc2f3;background:#f2f6ff}
+    a:focus-visible{outline:3px solid #8eb3ff;outline-offset:3px}
+    .figma-section{margin-top:36px}
+    .section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px}
+    .section-heading h2{font-size:24px;line-height:1.2;letter-spacing:-.03em}
+    .section-heading p{color:var(--muted);font-size:14px}
+    .figma-links{display:flex;gap:10px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;padding:2px 2px 8px;scrollbar-width:thin}
+    .figma-links a::before{content:"F";display:grid;place-items:center;width:22px;height:22px;border-radius:7px;background:#eef1ff;color:#695cff;font-size:13px;font-weight:850}
+    @media(max-width:650px){body{padding:34px 18px 56px}.holiday-note{align-items:flex-start;margin:24px 0 30px;padding:22px 20px}.holiday-sticker{min-width:78px;padding:10px}.holiday-sticker span{font-size:8px}.holiday-sticker strong{font-size:28px}.holiday-note h2{font-size:20px}.section-heading{display:block}.section-heading p{margin-top:5px}.prototype-card{padding:21px 20px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
   <header>
-    <h1>Содержание прототипов</h1>
-    <p>Демоверсии и материалы для разработки по проектам.</p>
+    <div class="eyebrow">Материалы проекта · для команды</div>
+    <h1>Содержание проекта, прототипы и макеты</h1>
+    <p class="intro">Рабочие ссылки для разработки — всё собрано в одном месте.</p>
   </header>
-  <section id="apartments" aria-label="Прототипы">
-    <article>
-      <h3>Desktop. Состояние загрузки</h3>
+
+  <aside class="holiday-note" aria-label="Записка на время отпуска">
+    <div class="holiday-copy">
+      <span class="holiday-kicker">Записка на время отпуска</span>
+      <h2>Даша ушла перезагружаться 🌴</h2>
+      <p>Прототипы остались на посту 🫡 Открывайте, листайте, проверяйте — нужные экраны и макеты уже здесь.</p>
+    </div>
+    <div class="holiday-sticker" aria-hidden="true"><span>режим</span><strong>☀️</strong><span>отдых</span></div>
+  </aside>
+
+  <section id="apartments" class="cards" aria-label="Прототипы">
+    <article class="prototype-card">
+      <div class="card-heading">
+        <span class="card-icon" aria-hidden="true">🖥️</span>
+        <div><span class="card-kicker">Desktop · прототип</span><h3>Состояние загрузки</h3></div>
+      </div>
       <p>Анимация загрузки квартир и планировок</p>
       <p>Кнопка пока анимирована не очень, Дима лучше сделает.</p>
       <div class="links">
-        <a href="apartments-a-loading/index.html?v=2">Открыть прототип</a>
-        <a href="apartments-a-loading/documentation.html?v=2">Демо и документация</a>
+        <a href="apartments-a-loading/index.html?v=2">Открыть прототип ↗</a>
+        <a href="apartments-a-loading/documentation.html?v=2">Демо и документация ↗</a>
       </div>
     </article>
-    <article style="margin-top:16px">
-      <h3>App. Экран планировок</h3>
+    <article class="prototype-card app-card">
+      <div class="card-heading">
+        <span class="card-icon" aria-hidden="true">📱</span>
+        <div><span class="card-kicker">App · прототип</span><h3>Экран планировок</h3></div>
+      </div>
       <p>Анимация свайпа в экране планировок</p>
       <p>Демо анимации со спецификой для разработки для Серёжи и Димы</p>
       <div class="links">
-        <a href="lesnaya-collection/prototype/index.html?v=20261010-offers12-300">Открыть прототип</a>
-        <a href="lesnaya-collection/dev-demo/developer-demo.html?v=20261010-offers12-300">Демо для разработки</a>
+        <a href="lesnaya-collection/prototype/index.html?v=20261010-offers12-300">Открыть прототип ↗</a>
+        <a href="lesnaya-collection/dev-demo/developer-demo.html?v=20261010-offers12-300">Демо для разработки ↗</a>
       </div>
     </article>
   </section>
+
   <section class="figma-section" aria-labelledby="figma-title">
-    <h2 id="figma-title">Макеты в Figma</h2>
+    <div class="section-heading">
+      <h2 id="figma-title">Макеты в Figma</h2>
+      <p>Выбирайте платформу — и вперёд к пикселям ✨</p>
+    </div>
     <div class="figma-links">
       <a href="https://www.figma.com/design/IIbR2wbzwCwfSQuuDYLpZu/New-%D1%80%D0%B0%D1%81%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%BD%D0%B8%D0%BA?node-id=425-99694">Макет iOS</a>
       <a href="https://www.figma.com/design/IIbR2wbzwCwfSQuuDYLpZu/New-%D1%80%D0%B0%D1%81%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%BD%D0%B8%D0%BA?node-id=648-149261">Макет Android</a>
