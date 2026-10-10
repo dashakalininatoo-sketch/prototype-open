@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Загрузка расквартирника — демо и спецификация</title>
+<style>
+    :root{font-family:Lato,Arial,sans-serif;color:#0d162e;background:#f3f5fa;--blue:#026dfd;--soft:#e6f0ff;--line:#d9e0ee}
+    *{box-sizing:border-box}body{margin:0;padding:40px}.page{max-width:1120px;margin:auto}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:32px;margin-bottom:28px}h1{margin:0 0 8px;font-size:32px;line-height:40px}p{margin:0;color:#697797;line-height:24px}.tag{padding:7px 10px;border-radius:8px;background:#e6f0ff;color:#005ede;font-size:13px;font-weight:700;white-space:nowrap}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px}.card{background:#fff;border-radius:20px;padding:24px;box-shadow:0 4px 18px #2638580c}.card h2{margin:0 0 16px;font-size:20px}.demo{height:360px;position:relative;overflow:hidden;border:1px solid #edf1f7;border-radius:16px;background:#fff}.demo iframe{width:100%;height:100%;border:0}.note{display:flex;gap:12px;padding:14px;border-radius:12px;background:#fff7e8;color:#684800;font-size:14px;line-height:20px}.asset-preview{display:flex;align-items:center;gap:14px;margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:12px}.asset-frame{width:40px;height:40px;flex:0 0 40px;border-radius:12px;background:#0054fd;display:grid;place-items:center}.asset-frame img{display:block;width:24px;height:24px}.asset-preview>div b,.asset-preview>div span{display:block}.asset-preview>div span{margin-top:2px;color:#697797;font-size:13px}.states{display:grid;gap:8px}.state{display:grid;grid-template-columns:110px 1fr 70px;gap:12px;padding:10px 0;border-bottom:1px solid #edf1f7;font-size:14px;line-height:20px}.state:last-child{border:0}.state code{color:#005ede;font-weight:700}.state time{text-align:right;color:#697797}.spec{margin:0;padding:0;list-style:none;display:grid;gap:10px}.spec li{display:flex;justify-content:space-between;gap:20px;padding-bottom:9px;border-bottom:1px solid #edf1f7;font-size:14px}.spec b{font-weight:400;color:#697797}.spec span{font-weight:700;text-align:right}.wide{grid-column:1/-1}.files{display:flex;flex-wrap:wrap;gap:10px}.file{display:inline-flex;align-items:center;height:40px;padding:0 14px;border-radius:8px;background:var(--soft);color:#005ede;text-decoration:none;font-weight:700;font-size:14px}.file.primary{background:#006cfd;color:#fff}.acceptance{columns:2;column-gap:36px;margin:0;padding-left:20px}.acceptance li{break-inside:avoid;margin-bottom:9px;line-height:21px}.code{margin:16px 0 0;padding:18px;border-radius:12px;background:#111a2e;color:#dbe8ff;overflow:auto;font:13px/20px ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre}
+    @media(max-width:850px){body{padding:20px}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.acceptance{columns:1}.top{display:block}.tag{display:inline-block;margin-top:14px}}
+  
+    .demo{height:auto;min-height:870px;display:flex;align-items:center;justify-content:center;gap:32px;padding:20px;background:#e9ecf5}
+    .demo iframe{width:407px;height:844px;flex:0 0 407px;border:0;border-radius:20px;background:#e9ecf5}
+    .demo-aside{max-width:300px;align-self:center}.demo-aside h3{margin:0 0 12px;font-size:18px}.demo-aside p{margin:0 0 16px}.replay{height:40px;padding:0 16px;border:0;border-radius:8px;background:#006cfd;color:#fff;font:700 14px Lato,Arial,sans-serif;cursor:pointer}.replay:focus-visible,.file:focus-visible{outline:2px solid #005ede;outline-offset:3px}
+    .callout{padding:14px;border-radius:12px;background:#f3f5fa;color:#34435f;font-size:14px;line-height:21px}.callout b{display:block;margin-bottom:4px;color:#0d162e}
+    .state{grid-template-columns:125px 1fr 105px}.state time{white-space:nowrap}.file:hover{filter:brightness(.96)}.spec li span{max-width:70%}
+    @media(max-width:850px){.demo{flex-direction:column;min-height:0}.demo-aside{max-width:407px;align-self:auto}.demo iframe{max-width:100%}}
+    @media(max-width:500px){.demo{padding:8px}.demo iframe{height:760px}}
+</style>
+</head>
+<body>
+<main class="page">
+<header class="top"><div><h1>Загрузка расквартирника<br>ЖК «Лесная Коллекция»</h1><p>Живая демка и параметры анимации для передачи в разработку</p></div><span class="tag">Апка · вертикальные карточки</span></header>
+<section class="grid">
+<article class="card wide"><h2>Живая анимация</h2><div class="demo">
+<iframe id="prototype" src="index.html?v=20261009-tabs-loading" title="Демо загрузки расквартирника"></iframe>
+<div class="demo-aside"><h3>Как смотреть</h3><p>Сначала показана загрузка квартир. «Квартиры» — слева; при переключении на «Планировки» загрузка повторяется. Фильтры работают; переходы из карточки ЖК отключены. В продукте скелетон показывается на время запроса квартир.</p><button class="replay" id="replay" type="button">Перезапустить анимацию</button><div class="callout" style="margin-top:20px"><b>Это фрагмент рабочего прототипа</b>В окне запущен рабочий прототип. Автопрокрутка и искусственная пауза нужны только для воспроизведения демки; это не требования к продукту.</div></div>
+</div></article>
+<article class="card"><h2>Загрузка</h2><ul class="spec"><li><b>Начало</b><span>запрос выбранной вкладки при входе или переключении</span></li><li><b>Конец</b><span>ответ или ошибка</span></li><li><b>Ошибка</b><span>состояние ошибки приложения; здесь не показано</span></li><li><b>Скелетоны</b><span>3 строки</span></li><li><b>Изображение</b><span>80 × 80 px</span></li><li><b>Фон скелетона</b><span>surface-neutral-default</span></li><li><b>Обводка изображения</b><span>1 px · stroke-border-neutral</span></li><li><b>Блик</b><span>surface-inverted-default · пик 60% · 1350 мс · linear · цикл</span></li><li><b>Индикатор кнопки</b><span>2000 мс/оборот · цикл</span></li></ul></article>
+<article class="card"><h2>Появление результата</h2><ul class="spec"><li><b>Первое превью</b><span>5 карточек</span></li><li><b>Шаг между стартами</b><span>100 мс</span></li><li><b>Длительность карточки</b><span>250 мс</span></li><li><b>Кривая</b><span>cubic-bezier(.5, 0, .2, 1)</span></li><li><b>Смещение карточек 2–5</b><span>−12 → 0 px</span></li><li><b>Конечный зазор</b><span>16 px</span></li><li><b>Рост блока</b><span>до высоты результата · 650 мс · cubic-bezier(.4, 0, .2, 1)</span></li><li><b>Контент ниже</b><span>плавно сдвигается вниз вместе с блоком</span></li><li><b>Кнопка</b><span>фон виден всё время; спиннер → текст</span></li><li><b>Текст кнопки</b><span>после 5-й карточки · fade 250 мс</span></li></ul></article>
+
+
+<article class="card wide"><h2>Файлы для разработчика</h2><div class="files">
+<a class="file primary" href="https://github.com/dashakalininatoo-sketch/prototype-open/tree/main/kaob-vertical-list-loading" target="_blank" rel="noopener">Все файлы на GitHub ↗</a>
+<a class="file" href="assets/kazhk-flats-runtime.js" download>JavaScript</a>
+<a class="file" href="assets/figma-loading-spinner.svg" download>SVG-индикатор</a>
+<a class="file" href="README-loading-demo.md" download>Спецификация .md</a>
+<a class="file" href="index.html?v=20261009-tabs-loading" target="_blank">Открыть прототип</a>
+</div><pre class="code">Загрузка: от начала запроса до ответа или ошибки
+Карточки: 5 шт. · старт через каждые 100 мс · по 250 мс
+Кривая: cubic-bezier(.5, 0, .2, 1)
+Кнопка: остаётся видимой · спиннер → текст после пятой карточки
+Текст: fade 250 мс · затем кнопка активна</pre></article>
+</section>
+</main>
+<script>
+const frame=document.getElementById('prototype');
+function focusSelector(){
+  try {
+    const doc=frame.contentDocument;
+    const scroller=doc.querySelector('#card .kazhk-scroll');
+    const section=doc.querySelector('#card .kazhk-section:nth-of-type(3)');
+    if(!scroller||!section)return;
+    doc.querySelector('#onboard')?.classList.add('hide');
+    const delta=section.getBoundingClientRect().top-scroller.getBoundingClientRect().top;
+    scroller.scrollTop+=delta-72;
+  } catch(error) { /* The full prototype remains available through its own link. */ }
+}
+frame.addEventListener('load',()=>requestAnimationFrame(()=>setTimeout(focusSelector,50)));
+document.getElementById('replay').addEventListener('click',()=>{frame.src='index.html?v=20261009-tabs-loading&demo='+Date.now()});
+</script>
+</body>
+</html>

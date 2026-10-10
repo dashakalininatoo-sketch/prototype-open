@@ -1,0 +1,100 @@
+/*
+ * Source of truth: dashakalininatoo-sketch/app-design-system (main)
+ * tokens/colors.json      sha da336bae5a59b74f56b76006d5ea7fbddd898b16
+ * tokens/typography.json  sha d6ad2eede17ad762e1959859566a2b33750fc2f7
+ * tokens/radius.json      sha f62393647712e74e1cba498edae994754d6af4be
+ */
+:root {
+  --ds-color-brand-off-black: #041d3f;
+  --ds-color-brand-main-blue: #0054fd;
+  --ds-color-brand-medium-blue: #0095ff;
+  --ds-color-brand-light-blue: #74d6fd;
+  --ds-color-brand-electric-green: #72e1c0;
+  --ds-color-brand-light-orange: #f1af12;
+  --ds-color-brand-warm-orange: #f5631a;
+  --ds-color-brand-white: #fff;
+
+  --ds-color-surface-main-default: #e6f0ff;
+  --ds-color-surface-main-pressed: #c1daff;
+  --ds-color-surface-main-selected: #d9e8ff;
+  --ds-color-surface-main-disabled: #e1e6f4;
+  --ds-color-surface-neutral-default: #f3f5fa;
+  --ds-color-surface-neutral-selected: #e1e6f4;
+
+  --ds-color-text-primary-default: #0d162e;
+  --ds-color-text-primary-disabled: #b1bad2;
+  --ds-color-text-secondary-default: #697797;
+  --ds-color-text-secondary-disabled: #b1bad2;
+  --ds-color-text-inverted-default: #fff;
+  --ds-color-text-on-bright-default: #fff;
+  --ds-color-text-main-default: #005ede;
+  --ds-color-text-positive-default: #227e01;
+  --ds-color-text-warning-default: #a14f00;
+  --ds-color-text-negative-default: #c2122d;
+
+  --ds-color-icon-primary-default: #212c46;
+  --ds-color-icon-secondary-default: #7683a0;
+  --ds-color-icon-inverted-default: #fff;
+  --ds-color-icon-on-bright-default: #fff;
+  --ds-color-icon-main-default: #006cfd;
+  --ds-color-icon-positive-default: #227e01;
+  --ds-color-icon-warning-default: #a14f00;
+  --ds-color-icon-negative-default: #c2122d;
+
+  --ds-color-stroke-divider-default: #d0d8e9;
+  --ds-color-stroke-border-default: #d0d8e9;
+  --ds-color-stroke-control-default: #d0d8e9;
+  --ds-color-stroke-control-focused: #68a4ff;
+
+  --ds-color-control-main-primary-default: #006cfd;
+  --ds-color-control-main-primary-pressed: #075ad9;
+  --ds-color-control-main-primary-disabled: #e1e6f4;
+  --ds-color-control-main-secondary-default: #e6f0ff;
+  --ds-color-control-main-secondary-pressed: #cde1ff;
+  --ds-color-control-main-secondary-disabled: #e1e6f4;
+  --ds-color-control-positive-primary-default: #34ac0a;
+  --ds-color-control-positive-secondary-default: #ebf9e6;
+  --ds-color-control-warning-primary-default: #db6f0a;
+  --ds-color-control-warning-secondary-default: #fff2e6;
+  --ds-color-control-negative-primary-default: #db1f36;
+  --ds-color-control-negative-secondary-default: #ffe9eb;
+
+  --ds-font-family: "SF Pro", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --ds-font-display: "SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --ds-font-weight-regular: 400;
+  --ds-font-weight-semibold: 600;
+  --ds-font-size-heading-1: 36px;
+  --ds-line-height-heading-1: 43px;
+  --ds-letter-spacing-heading-1: .36px;
+  --ds-font-size-heading-2: 28px;
+  --ds-line-height-heading-2: 34px;
+  --ds-letter-spacing-heading-2: .36px;
+  --ds-font-size-heading-3: 22px;
+  --ds-line-height-heading-3: 27px;
+  --ds-letter-spacing-heading-3: .35px;
+  --ds-font-size-heading-4: 16px;
+  --ds-line-height-heading-4: 20px;
+  --ds-letter-spacing-heading-4: -.32px;
+  --ds-font-size-heading-5: 14px;
+  --ds-line-height-heading-5: 17px;
+  --ds-letter-spacing-heading-5: -.24px;
+  --ds-font-size-body-1: 16px;
+  --ds-line-height-body-1: 20px;
+  --ds-letter-spacing-body-1: -.32px;
+  --ds-font-size-body-2: 14px;
+  --ds-line-height-body-2: 17px;
+  --ds-letter-spacing-body-2: -.24px;
+  --ds-font-size-caption: 12px;
+  --ds-line-height-caption: 15px;
+  --ds-letter-spacing-caption: 0;
+
+  --ds-radius-rect: 0;
+  --ds-radius-s: 2px;
+  --ds-radius-m: 4px;
+  --ds-radius-l: 8px;
+  --ds-radius-xl: 12px;
+  --ds-radius-xxl: 16px;
+  --ds-radius-xxxl: 20px;
+  --ds-radius-xxxxl: 24px;
+  --ds-radius-oval: 99px;
+}

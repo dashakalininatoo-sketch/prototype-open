@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icons/Action/24/Filter">
+<g id="Vector">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.1 7H0V5H11.1C11.5633 2.71776 13.581 1 16 1C18.419 1 20.4367 2.71776 20.9 5H24V7H20.9C20.4367 9.28224 18.419 11 16 11C13.581 11 11.5633 9.28224 11.1 7ZM13 6C13 4.34315 14.3431 3 16 3C17.6569 3 19 4.34315 19 6C19 7.65685 17.6569 9 16 9C14.3431 9 13 7.65685 13 6Z" fill="#0468FF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12.9 19H24V17H12.9C12.4367 14.7178 10.419 13 8 13C5.58104 13 3.56329 14.7178 3.10002 17H0V19H3.10002C3.56329 21.2822 5.58104 23 8 23C10.419 23 12.4367 21.2822 12.9 19ZM11 18C11 16.3431 9.65685 15 8 15C6.34315 15 5 16.3431 5 18C5 19.6569 6.34315 21 8 21C9.65685 21 11 19.6569 11 18Z" fill="#0468FF"/>
+</g>
+</g>
+</svg>
