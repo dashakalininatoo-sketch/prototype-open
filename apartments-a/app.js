@@ -67,7 +67,7 @@ function groupHTML(group){
  const result=filteredGroupRows(group.id);
  const rows=result.rows.slice((state.page-1)*PER_PAGE,state.page*PER_PAGE);
  return '<section class="flat-group '+(open?'is-open':'')+'" data-group="'+group.id+'" aria-label="'+group.title+'">'+
- '<div class="group"><strong class="heading4">'+group.title+'</strong><span class="group-area">'+group.area+'</span><span class="group-price">'+group.price+'</span><button data-collapse="'+group.id+'" aria-controls="group-content-'+group.id+'" aria-expanded="'+open+'">'+group.offers+' '+plural(group.offers,'предложение','предложения','предложений')+icon('ChevronRightSmall')+'</button></div>'+
+ (state.rooms.size?'':'<div class="group"><strong class="heading4">'+group.title+'</strong><span class="group-area">'+group.area+'</span><span class="group-price">'+group.price+'</span><button data-collapse="'+group.id+'" aria-controls="group-content-'+group.id+'" aria-expanded="'+open+'">'+group.offers+' '+plural(group.offers,'предложение','предложения','предложений')+icon('ChevronRightSmall')+'</button></div>')+
  '<div id="group-content-'+group.id+'" class="accordion-panel '+(open?'is-open':'')+'" '+(open?'':'inert')+'><div class="group-content">'+rows.map(r=>rowHTML(r)).join('')+paginationHTML(group.id,result.count)+'</div></div></section>';
 }
 function toggleGroup(room){
