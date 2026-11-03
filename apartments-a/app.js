@@ -188,6 +188,8 @@ document.addEventListener('click',e=>{
  if(button?.dataset.toggle){const set=state[button.dataset.toggle],id=button.dataset.id;set.has(id)?set.delete(id):set.add(id);const inModal=button.closest('#plan-modal');render();if(inModal){const plan=fixture.find(r=>String(r.id)===String($('#plan-modal').dataset.plan));if(plan){$('#modal-offers').innerHTML=plan.offerRows.map(r=>rowHTML(r,{modal:true})).join('');}}return;}
  if(button?.dataset.page){state.page=Number(button.dataset.page);render();return;}
  if(button?.dataset.collapse!==undefined){state.page=1;toggleGroup(Number(button.dataset.collapse));return;}
+ const group=e.target.closest('.group');
+ if(group&&!e.target.closest('button,a')){const collapse=group.querySelector('[data-collapse]');if(collapse){state.page=1;toggleGroup(Number(collapse.dataset.collapse));return;}}
  if(button?.hasAttribute('data-image')){openImagePreview(button);return;}
  if(button?.id==='expand-modal'){$('#plan-modal').classList.toggle('expanded');button.setAttribute('aria-label',$('#plan-modal').classList.contains('expanded')?'Уменьшить планировку':'Увеличить планировку');button.innerHTML=$('#plan-modal').classList.contains('expanded')?icon('Close'):icon('Fullscreen');return;}
  if(button?.classList.contains('modal-close')){button.closest('dialog').close();return;}
