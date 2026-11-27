@@ -383,7 +383,7 @@ body{background:#f2f4f9!important;color:var(--ink)}
 .btn.primary:hover:not(:disabled),.header-post:hover:not(:disabled){background:#0045da;border-color:#0045da}
 .label-icon svg{width:16px;height:16px;display:block;color:#ff6618}
 </style>
-  <link rel="stylesheet" href="./performance-vas-posutka-source/styles.css">
+  <link rel="stylesheet" href="./performance-vas-posutka-source/styles.css?v=20261127-3">
 </head>
 <body>
 <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><symbol id="icon-ArrowLeft" viewBox="0 0 24 24">
@@ -418,16 +418,22 @@ body{background:#f2f4f9!important;color:var(--ink)}
 <div class="proto" id="prototype"></div>
 <div id="app"></div>
 <dialog id="overlay"></dialog>
-<div id="archived-promotion-root"></div>
 <script src="./performance-vas-posutka-source/vendor/react.js"></script>
 <script src="./performance-vas-posutka-source/vendor/react-dom.js"></script>
-<script src="./performance-vas-posutka-source/promotion.js"></script>
+<script src="./performance-vas-posutka-source/promotion.js?v=20261127-2"></script>
 <script>
-window.__archivePromotionRoot = ReactDOM.createRoot(document.getElementById('archived-promotion-root'));
-window.__archivePromotionOpen = false;
-window.openArchivedPromotion = () => { window.__archivePromotionOpen = true; window.__renderArchivedPromotion(); };
-window.__renderArchivedPromotion = () => window.__archivePromotionRoot.render(React.createElement(PerformanceVAS.PromotionModal, {open: window.__archivePromotionOpen, onClose: () => { window.__archivePromotionOpen = false; window.__renderArchivedPromotion(); }, assetBase: './performance-vas-posutka-source/assets/'}));
-window.__renderArchivedPromotion();
+window.__archivedPromotionRoot = null;
+window.__archivedPromotionHost = null;
+window.mountArchivedPromotion = (host, onConnect) => {
+  if (window.__archivedPromotionRoot && window.__archivedPromotionHost !== host) {
+    window.__archivedPromotionRoot.unmount();
+    window.__archivedPromotionRoot = null;
+  }
+  window.__archivedPromotionHost = host;
+  if (!host) return;
+  window.__archivedPromotionRoot ??= ReactDOM.createRoot(host);
+  window.__archivedPromotionRoot.render(React.createElement(PerformanceVAS.PromotionModal, {open: true, embedded: true, onConnect, assetBase: './performance-vas-posutka-source/assets/'}));
+};
 </script>
 <script>
 'use strict';
@@ -547,7 +553,7 @@ function publicationResult(promoted) {
   return `<div class="publication-result"><div class="publication-column">${publicationSnippet(item)}<section class="pub-panel"><img class="result-graphic" src="${embeddedAssets['figma-success-graphic.svg']}" alt="">
       <h1>${promoted ? 'Объявление опубликовано с продвижением' : 'Объявление опубликовано'}</h1>
       <p>${promoted ? 'Вы платите за продвижение только за состоявшиеся бронирования.' : 'Объявление размещено бесплатно. Продвижение можно подключить позже.'}</p>
-      ${button('Перейти в мои объявления','list','primary')}</section></div></div>`;
+      ${button('Перейти к объявлению','host-list','primary')}</section></div></div>`;
 }
 
 
@@ -626,6 +632,12 @@ function render(preserveScroll = false) {
   const single = ['published','wizard','draft-saved'].includes(screen) || (screen === 'success' && setupOrigin === 'wizard');
   const classes = [single ? 'single' : 'cabinet-layout', (screen === 'calendar' ? !calendarExpanded : compact) ? 'compact' : '',screen === 'calendar' ? 'calendar-shell' : ''].join(' ');
   app.innerHTML = navigation() + `<main class="wrap layout ${classes}">${single ? '' : sidebar()}${(pages[screen] ?? cabinetSection)()}</main>`;
+  const archiveHost = screen === 'wizard' && step === steps.length - 1 ? app.querySelector('.archived-promotion-host') : null;
+  window.mountArchivedPromotion?.(archiveHost, ({rate, dates}) => {
+    publicationPlan = dates ? {rate, start:dates[0], end:dates[1], duration:Math.round((Date.parse(dates[1])-Date.parse(dates[0]))/durationDay)+1} : {rate, start:today, end:dateAfter(13), duration:14};
+    form.publishMode = 'promo';
+    publish();
+  });
   initPhotoCharacter();
   playPendingPhotoReaction();
   playPendingCharacterReaction();
@@ -728,7 +740,7 @@ document.addEventListener('click',event => {
     return;
   }
   switch (action) {
-    case 'archive-promotion': window.openArchivedPromotion(); break;
+    case 'host-list': window.location.href = './cian-prototype/posutochno.html'; break;
     case 'scenario-new': switchScenario('new'); break;
     case 'scenario-portfolio': switchScenario('portfolio'); break;
     case 'reset': switchScenario(scenario,true); break;
@@ -1077,7 +1089,7 @@ function promotionScreen(plan,item) {
       <section class="promotion-forecast" id="promotion-forecast-content">${promotionForecast(plan,item)}</section>
     </div>
     <aside class="promotion-finance" id="promotion-finance-content"><h2>Сколько вы можете получить</h2>${promotionFinance(plan,item)}</aside>
-  </div><div class="promotion-footer">${kitButton('Назад','wizard-back','soft')}<button type="button" class="btn" data-action="archive-promotion">Открыть вариант из архива</button></div></div>`;
+  </div><div class="promotion-footer">${kitButton('Назад','wizard-back','soft')}</div></div>`;
 }
 
 function wizardProgress() {
@@ -1714,7 +1726,7 @@ function wizard() {
   const final = step === steps.length-1;
   if (final) {
     syncDraftObject();
-    return promotionScreen(publicationPlan,data.new[0]);
+    return '<div class="archived-promotion-host"></div>';
   }
   const label = final ? form.publishMode === 'promo' ? 'Опубликовать с продвижением' : 'Опубликовать бесплатно' : 'Дальше';
   const yellowCharacter = [2,3,4].includes(step);
